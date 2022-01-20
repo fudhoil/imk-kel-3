@@ -1,76 +1,65 @@
-<!-- Sidebar -->
-<ul class="navbar-nav bg-dark sidebar sidebar-dark accordion" id="accordionSidebar">
-
-  <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-      <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
-      </div>
-      <div class="sidebar-brand-text mx-3">Gatra Collaborative</div>
-  </a>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider my-0">
-
-  <!-- Nav Item - Dashboard -->
-  <li class="nav-item {{ ($title === "Home") ? 'active' : '' }}">
-      <a class="nav-link" href="/">
-          <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Dashboard</span></a>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider">
-
-  <!-- Heading -->
-  <div class="sidebar-heading">
-      Interface
-  </div>
-
-  <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-          aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-      </a>
-      <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Login Screens:</h6>
-              <a class="collapse-item " href="/login">Login</a>
-              <a class="collapse-item " href="/barang">Barang</a>
-              <a class="collapse-item " href="/peinjaman">Peminjaman</a>
-              <a class="collapse-item" href="/register">Register</a>
-              <a class="collapse-item" href="/forgot-password">Forgot Password</a>
-              <div class="collapse-divider"></div>
-              <h6 class="collapse-header">Other Pages:</h6>
-              <a class="collapse-item" href="/404-not-found">404 Page</a>
-              <a class="collapse-item" href="/blank-page">Blank Page</a>
-          </div>
-      </div>
-  </li>
-
-  <!-- Nav Item - Charts -->
-  <li class="nav-item">
-      <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-  </li>
-
-  <!-- Nav Item - Tables -->
-  <li class="nav-item">
-      <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
-  </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider d-none d-md-block">
-
-  <!-- Sidebar Toggler (Sidebar) -->
-  <div class="text-center d-none d-md-inline">
-      <button class="rounded-circle border-0" id="sidebarToggle"></button>
-  </div>
-
-</ul>
-<!-- End of Sidebar -->
+<div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-dark sidebar collapse">
+        <div class="position-sticky pt-3">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}" aria-current="page" href="/">
+                <span data-feather="home"></span>
+                Dashboard
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ ($title === "Barang") ? 'active' : '' }}" href="/barang">
+                <span data-feather="file"></span>
+                Barang
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {{ ($title === "Peminjaman") ? 'active' : '' }}" href="/peminjaman">
+                <span data-feather="shopping-cart"></span>
+                Peminjaman
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="bar-chart-2"></span>
+                Reports
+              </a>
+            </li>
+          </ul>
+  
+          {{-- <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Saved reports</span>
+            <a class="link-secondary" href="#" aria-label="Add a new report">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Current month
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Last quarter
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Social engagement
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Year-end sale
+              </a>
+            </li>
+          </ul> --}}
+        </div>
+      </nav>
