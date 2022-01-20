@@ -13,8 +13,8 @@
   <hr class="sidebar-divider my-0">
 
   <!-- Nav Item - Dashboard -->
-  <li class="nav-item active">
-      <a class="nav-link" href="index.html">
+  <li class="nav-item {{ ($title === "Home") ? 'active' : '' }}">
+      <a class="nav-link" href="/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
   </li>
@@ -37,9 +37,9 @@
       <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Login Screens:</h6>
-              <a class="collapse-item" href="/login">Login</a>
-              <a class="collapse-item" href="/barang">Barang</a>
-              <a class="collapse-item" href="/peinjaman">Peminjaman</a>
+              <a class="collapse-item " href="/login">Login</a>
+              <a class="collapse-item " href="/barang">Barang</a>
+              <a class="collapse-item " href="/peinjaman">Peminjaman</a>
               <a class="collapse-item" href="/register">Register</a>
               <a class="collapse-item" href="/forgot-password">Forgot Password</a>
               <div class="collapse-divider"></div>
