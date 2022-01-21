@@ -6,7 +6,7 @@
             <li class="nav-item">
               <a class="nav-link {{ ($title === "Home") ? 'active' : '' }}" aria-current="page" href="/">
                 <span data-feather="home"></span>
-                Dashboard
+                Welcome
               </a>
             </li>
             <li class="nav-item">
