@@ -9,7 +9,7 @@ class Barang extends Model
 {
     use HasFactory;
 
-    protected $barang = ['id'];
+    protected $guarded = ['id'];
     
     public function Peminjaman(){
         return $this->belongsTo(Peminjaman::class);
