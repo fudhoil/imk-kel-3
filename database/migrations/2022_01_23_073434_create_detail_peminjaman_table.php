@@ -13,11 +13,11 @@ class CreateDetailPeminjamanTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_peminjaman', function (Blueprint $table) {
-            $table->foreignId('barang_id');
-            $table->foreignId('peminjaman_id');
-            $table->string('Item');
-            $table->string('Status');
+        Schema::create('T_detail_peminjaman', function (Blueprint $table) {
+            $table->foreignId('id_barang');
+            $table->foreignId('id_peminjaman');
+            $table->string('barang');
+            $table->string('status');
             $table->timestamps();
         });
     }

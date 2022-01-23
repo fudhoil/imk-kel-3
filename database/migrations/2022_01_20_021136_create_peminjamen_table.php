@@ -13,13 +13,13 @@ class CreatePeminjamenTable extends Migration
      */
     public function up()
     {
-        Schema::create('peminjamen', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('barang_id');
-            $table->string("Loaner's Name");
-            $table->date('Tgl_peminjaman');
-            $table->date('Tgl_pengembalian');
-            $table->enum('Status Peminjaman',['Borrowed','Returned']);
+        Schema::create('T_peminjamen', function (Blueprint $table) {
+            $table->id('id_peminjaman');
+            $table->foreignId('id_barang');
+            $table->string("nama peminjam");
+            $table->date('tgl_peminjaman');
+            $table->date('tgl_pengembalian');
+            $table->enum('Status Peminjaman',['Terpinjam','Kembali']);
             $table->timestamps();
         });
     }

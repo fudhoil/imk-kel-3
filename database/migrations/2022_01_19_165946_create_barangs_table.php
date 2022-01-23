@@ -13,12 +13,12 @@ class CreateBarangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('barangs', function (Blueprint $table) {
-            $table->id();
-            $table->string('Item');
-            $table->string('Type');
-            $table->enum('Condition',['Good','Bad']);
-            $table->enum('Status Barang',['Available','Unavailable','On Repair']);
+        Schema::create('T_barang', function (Blueprint $table) {
+            $table->id('id_barang');
+            $table->string('nama barang');
+            $table->string('type');
+            $table->enum('kondisi',['Baik','Rusak']);
+            $table->enum('status barang',['Tersedia','Tidak tersedia','Dalam perbaikan']);
             $table->timestamps();
         });
     }
