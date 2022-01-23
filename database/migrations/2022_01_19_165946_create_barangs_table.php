@@ -15,8 +15,10 @@ class CreateBarangsTable extends Migration
     {
         Schema::create('barangs', function (Blueprint $table) {
             $table->id();
-            $table->string('Jenis Barang');
-            $table->text('Body');
+            $table->string('Item');
+            $table->string('Type');
+            $table->enum('Condition',['Good','Bad']);
+            $table->enum('Status Barang',['Available','Unavailable','On Repair']);
             $table->timestamps();
         });
     }
