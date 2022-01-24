@@ -11,7 +11,7 @@ class Barang extends Model
 
     protected $guarded = ['id'];
     
-    public function Peminjaman(){
-        return $this->belongsTo(Peminjaman::class);
+    public function DetailPeminjaman(){
+        return $this->belongsTo(DetailPeminjaman::class);
     }
 }

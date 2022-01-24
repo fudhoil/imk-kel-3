@@ -16,8 +16,6 @@ class CreateDetailPeminjamanTable extends Migration
         Schema::create('T_detail_peminjaman', function (Blueprint $table) {
             $table->foreignId('id_barang');
             $table->foreignId('id_peminjaman');
-            $table->string('barang');
-            $table->string('status');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class CreateDetailPeminjamanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_peminjaman');
+        Schema::dropIfExists('T_detail_peminjaman');
     }
 }

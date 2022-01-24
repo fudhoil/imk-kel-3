@@ -11,7 +11,8 @@ class Peminjaman extends Model
 
     protected $guarded = ['id'];
 
-    public function Barang(){
-        return $this->hasMany(Barang::class);
-    }
+    public function DetailPeminjaman(){
+        return $this->hasOne(DetailPeminjaman::class);
+}
+
 }

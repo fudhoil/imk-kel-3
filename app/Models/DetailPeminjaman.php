@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailPeminjaman extends Model
 {
-    protected $guarded = ['id'];
+    protected $guarded = ['foreignId'];
 
     public function Peminjaman(){
             return $this->hasOne(Peminjaman::class);
     }
     public function Barang(){
-        return $thi->hasOne(Barang::class);
+        return $this->hasOne(Barang::class);
     }
 }

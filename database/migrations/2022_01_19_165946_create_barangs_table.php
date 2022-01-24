@@ -16,8 +16,8 @@ class CreateBarangsTable extends Migration
         Schema::create('T_barang', function (Blueprint $table) {
             $table->id('id_barang');
             $table->string('nama barang');
-            $table->string('type');
-            $table->enum('kondisi',['Baik','Rusak']);
+            $table->string('type barang');
+            $table->enum('kondisi barang',['Baik','Rusak']);
             $table->enum('status barang',['Tersedia','Tidak tersedia','Dalam perbaikan']);
             $table->timestamps();
         });
@@ -30,6 +30,6 @@ class CreateBarangsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('barangs');
+        Schema::dropIfExists('T_barangs');
     }
 }
