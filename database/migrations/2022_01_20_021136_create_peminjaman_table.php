@@ -13,7 +13,7 @@ class CreatePeminjamanTable extends Migration
      */
     public function up()
     {
-        Schema::create('T_peminjaman', function (Blueprint $table) {
+        Schema::create('peminjaman', function (Blueprint $table) {
             $table->id('id_peminjaman')->notnull();
             $table->string("nama peminjam");
             $table->date('tgl_peminjaman');
@@ -30,6 +30,6 @@ class CreatePeminjamanTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('T_peminjaman');
+        Schema::dropIfExists('peminjaman');
     }
 }

@@ -1,8 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\PeminjamanController;
 
 /*
@@ -16,15 +18,31 @@ use App\Http\Controllers\PeminjamanController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function(){
     return view('home', [
-        "title" => "Home"
-    ]
-    );
-});
+        'title' => 'Home'
+    ]);
+})->middleware('auth');
+
+Route::get('/home', function(){
+    return view('home', [
+        'title' => 'Home'
+    ]);
+})->middleware('auth');
 
 Route::get('/barang', [BarangController::class, 'index']);
     
 Route::get('/peminjaman', [PeminjamanController::class, 'index']);
 
 Route::get('/laporan', [LaporanController::class, 'index']);
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+
+Route::post('/register', [RegisterController::class, 'store']);
+

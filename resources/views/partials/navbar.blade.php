@@ -3,10 +3,26 @@
     <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    {{-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> --}}
-    <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Sign out</a>
+    @auth
+      <div class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+          Welcome, {{ auth()->user()->nama }}
+        </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <li><a class="dropdown-item disabled" href="#">Profile</a></li>
+          <li><a class="dropdown-item" href="/">Home</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <form action="/logout" method="post">
+              @csrf
+              <button type="submit" class="dropdown-item">Logout</button>
+            </form>
+        </ul>
       </div>
-    </div>
- </header>
+    @else
+        <div class="nav-item text-nowrap">
+          <a class="nav-link px-3  text-decoration-none text-white" href="/login">Login</a>
+        </div>
+    @endauth
+
+</header>

@@ -51,8 +51,8 @@
                   <td>{{ $br->status_barang }}</td>
                   <td>
                     <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#tambah">Edit</button>
-                        <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="btn-tambah" aria-hidden="true">
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#tambah">Ubah</button>
+                        <div class="modal fade" id="ubah" tabindex="-1" aria-labelledby="btn-ubah" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
@@ -63,7 +63,7 @@
                                 ...
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="tambah">Close</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="ubah">Close</button>
                                 <button type="button" class="btn btn-danger">Save changes</button>
                               </div>
                             </div>

@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 @extends('layouts.main')
 
 @section('container')
@@ -171,5 +168,3 @@
   </div>
 
 @endsection
- 
-</html>

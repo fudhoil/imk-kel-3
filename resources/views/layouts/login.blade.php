@@ -37,9 +37,7 @@
     <div id="wrapper">
 
       @include('partials.navbar')
-      @include('partials.sidebar')
-      
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <main class="col-md-9justify-content-center">
               @yield('container')
               <footer class="sticky-footer justify-content-center bg-white mt-5">
                   <div class="d-flex justify-content-center my-auto">
