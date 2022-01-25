@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BarangController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PeminjamanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +22,9 @@ Route::get('/', function () {
     ]
     );
 });
-Route::get('/barang', function () {
-    return view('barang', [
-        "title" => "Barang"
-    ]
-    );
-});
+
+Route::get('/barang', [BarangController::class, 'index']);
+    
+Route::get('/peminjaman', [PeminjamanController::class, 'index']);
+
+Route::get('/laporan', [LaporanController::class, 'index']);

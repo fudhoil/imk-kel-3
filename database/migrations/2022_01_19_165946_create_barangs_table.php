@@ -13,8 +13,8 @@ class CreateBarangsTable extends Migration
      */
     public function up()
     {
-        Schema::create('T_barang', function (Blueprint $table) {
-            $table->id('id_barang');
+        Schema::create('T_barangs', function (Blueprint $table) {
+            $table->id('id_barang')->notnull();
             $table->string('nama barang');
             $table->string('type barang');
             $table->enum('kondisi barang',['Baik','Rusak']);

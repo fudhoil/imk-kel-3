@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Peminjaman;
-use Illuminate\Http\Request;
+use App\Models\Laporan;
+use App\Http\Requests\StoreLaporanRequest;
+use App\Http\Requests\UpdateLaporanRequest;
 
-class PeminjamanController extends Controller
+class LaporanController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,8 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        return view('peminjaman', [
-            "title" => "Peminjaman"
+        return view('laporan', [
+            "title" => "Laporan"
         ]
         );
     }
@@ -33,10 +34,10 @@ class PeminjamanController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreLaporanRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreLaporanRequest $request)
     {
         //
     }
@@ -44,10 +45,10 @@ class PeminjamanController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  \App\Models\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function show(Peminjaman $peminjaman)
+    public function show(Laporan $laporan)
     {
         //
     }
@@ -55,10 +56,10 @@ class PeminjamanController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  \App\Models\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function edit(Peminjaman $peminjaman)
+    public function edit(Laporan $laporan)
     {
         //
     }
@@ -66,11 +67,11 @@ class PeminjamanController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  \App\Http\Requests\UpdateLaporanRequest  $request
+     * @param  \App\Models\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Peminjaman $peminjaman)
+    public function update(UpdateLaporanRequest $request, Laporan $laporan)
     {
         //
     }
@@ -78,10 +79,10 @@ class PeminjamanController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Peminjaman  $peminjaman
+     * @param  \App\Models\Laporan  $laporan
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Peminjaman $peminjaman)
+    public function destroy(Laporan $laporan)
     {
         //
     }

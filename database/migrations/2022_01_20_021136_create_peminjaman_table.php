@@ -14,7 +14,7 @@ class CreatePeminjamanTable extends Migration
     public function up()
     {
         Schema::create('T_peminjaman', function (Blueprint $table) {
-            $table->id('id_peminjaman');
+            $table->id('id_peminjaman')->notnull();
             $table->string("nama peminjam");
             $table->date('tgl_peminjaman');
             $table->date('tgl_pengembalian');
