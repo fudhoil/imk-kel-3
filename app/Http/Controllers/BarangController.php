@@ -16,7 +16,8 @@ class BarangController extends Controller
     public function index()
     {
         return view('barang', [
-            "title" => "Barang"
+            "title" => "Barang",
+            "barang" => Barang::paginate(2)
         ]
         );
     }
@@ -39,7 +40,7 @@ class BarangController extends Controller
      */
     public function store(StoreBarangRequest $request)
     {
-        //
+        
     }
 
     /**

@@ -14,10 +14,10 @@ class BarangFactory extends Factory
     public function definition()
     {
         return [
-            'nama barang' => $this->faker->words(2),
-            'type barang' => $this->faker->words(1),
-            'kondidi barang' => $this->faker->randomElements(['Baik','Rusak']),
-            'status barang' => $this->faker->randomElements(['Tersedia','Tidak tersedia','Dalam perbaikan'])
+            'nama_barang' => $this->faker->words(2),
+            'type_barang' => $this->faker->words(1),
+            'kondidi_barang' => $this->faker->randomElements(['Baik','Rusak']),
+            'status_barang' => $this->faker->randomElements(['Tersedia','Tidak tersedia','Dalam perbaikan'])
         ];
     }
 }
