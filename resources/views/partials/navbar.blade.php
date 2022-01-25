@@ -6,22 +6,22 @@
     @auth
       <div class="nav-item dropdown">
         <a class="nav-link dropdown-toggle text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-          Welcome, {{ auth()->user()->nama }}
+          Selamat datang, {{ auth()->user()->nama }}
         </a>
         <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item disabled" href="#">Profile</a></li>
+          <li><a class="dropdown-item disabled" href="#">Profil</a></li>
           <li><a class="dropdown-item" href="/">Home</a></li>
           <li><hr class="dropdown-divider"></li>
           <li>
             <form action="/logout" method="post">
               @csrf
-              <button type="submit" class="dropdown-item">Logout</button>
+              <button type="submit" class="dropdown-item">Keluar</button>
             </form>
         </ul>
       </div>
     @else
         <div class="nav-item text-nowrap">
-          <a class="nav-link px-3  text-decoration-none text-white" href="/login">Login</a>
+          <a class="nav-link px-3  text-decoration-none text-white" href="/login">Masuk</a>
         </div>
     @endauth
 
