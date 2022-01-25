@@ -5,7 +5,9 @@
 
 @section('container')
 
-Barang
+@if ()
+        
+@endif
 
 @endsection
  
