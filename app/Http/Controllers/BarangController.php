@@ -17,7 +17,7 @@ class BarangController extends Controller
     {
         return view('barang', [
             "title" => "Barang",
-            "barang" => Barang::paginate(10)
+            "barang" => Barang::paginate(10),
         ]
         );
     }
@@ -40,9 +40,10 @@ class BarangController extends Controller
      */
     public function store(StoreBarangRequest $request)
     {
+        // dd($request);
         $vaidatedData = $request->validate([
             'nama_barang' => 'required|max:255',
-            'type_barang' => 'required|max:255'
+            'type_barang' => 'required|max:255',
         ]);
 
         Barang::create($vaidatedData);

@@ -39,8 +39,8 @@
                     <div class="mb-3">
                       <label for="kondisibarang" class="form-label">Kondisi Barang</label>
                       <select class="form-select" aria-label="Default select example">
-                        <option name="kondisi_barang" value="Baik">Baik</option>
-                        <option name="kondisi_barang" value="Rusak">Rusak</option>
+                        <option name="Baik" value="Baik">Baik</option>
+                        <option name="Rusak" value="Rusak">Rusak</option>
                       </select>
                     </div>
                     <div class="mb-3">
@@ -112,8 +112,8 @@
                                 @error('nama_barang')
                                 <div class="invalid-feedback">
                                     {{ $message }}
-                                  </div>
-                                  @enderror
+                                </div>
+                                @enderror
                                 </div>
                                 <div class="mb-3">
                                   <label for="typebarang" class="form-label">Type Barang</label>
