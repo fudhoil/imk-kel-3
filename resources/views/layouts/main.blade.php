@@ -44,7 +44,7 @@
               <footer class="sticky-footer justify-content-center bg-white mt-5">
                   <div class="d-flex justify-content-center my-auto">
                       <div class="copyright text-center my-auto">
-                          <span>Copyright &copy; IMK Kel 3 2021</span>
+                          <span>Copyright &copy; IMK Kel 3 2022</span>
                       </div>
                   </div>
               </footer>
