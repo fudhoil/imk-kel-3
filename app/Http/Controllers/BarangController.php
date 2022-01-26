@@ -17,7 +17,7 @@ class BarangController extends Controller
     {
         return view('barang', [
             "title" => "Barang",
-            "barang" => Barang::paginate(2)
+            "barang" => Barang::paginate(10)
         ]
         );
     }
@@ -40,7 +40,13 @@ class BarangController extends Controller
      */
     public function store(StoreBarangRequest $request)
     {
-        
+        $vaidatedData = $request->validate([
+            'nama_barang' => 'required|max:255',
+            'type_barang' => 'required|max:255'
+        ]);
+
+        Barang::create($vaidatedData);
+        return redirect('/barang')->with('success', 'Barang baru berhasil ditambahkan!');
     }
 
     /**
@@ -85,6 +91,7 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        //
+        Barang::destroy($barang->id_barang);
+        return redirect('/barang')->with('success', 'Data barang telah berhasil dihapus!');
     }
 }

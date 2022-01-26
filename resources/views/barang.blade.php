@@ -8,7 +8,9 @@
 <div class="container-fluid mt-5">
     <div class="d-flex flex-row-reverse bd-highlight">
         <button type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
-        <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="btn-tambah" aria-hidden="true">
+        <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="btn-tambah" aria-hidden="true">  
+          <form action="/barang" method="post">
+            @csrf
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
@@ -16,18 +18,62 @@
                   <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  ...
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="tambah">Close</button>
-                  <button type="button" class="btn btn-danger">Save changes</button>
+                    <div class="mb-3">
+                      <label for="namabarang" class="form-label">Nama Barang</label>
+                      <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ old('nama_barang') }}">
+                      @error('nama_barang')
+                          <div class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                    </div>
+                    <div class="mb-3">
+                      <label for="typebarang" class="form-label">Type Barang</label>
+                      <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required {{ old('type_barang') }}>
+                      @error('type_barang')
+                          <div class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                    </div>
+                    <div class="mb-3">
+                      <label for="kondisibarang" class="form-label">Kondisi Barang</label>
+                      <select class="form-select" aria-label="Default select example">
+                        <option name="baik" value="1" selected>Baik</option>
+                        <option name="rusak" value="2">Rusak</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label for="statusbarang" class="form-label">Status Barang</label>
+                      <select class="form-select" name="status_barang" aria-label="Default select example">
+                        <option name="terpinjam" value="1">Terpinjam</option>
+                        <option name="tidakterpinjam" value="2" selected>Tidak Terpinjam</option>
+                        <option name="dalamperbaikan" value="3">Dalam Perbaikan</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Tambahkan</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
+          </form>
         
     </div>
+    @if (session()->has('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
 
+    @if (session()->has('loginError'))
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        {{ session('loginError') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
     <table class="table table-hover">
         <thead>
           <tr>
@@ -50,27 +96,81 @@
                   <td>{{ $br->kondisi_barang }}</td>
                   <td>{{ $br->status_barang }}</td>
                   <td>
+                    <form action="/barang" method="post">
+                      @method('update')
+                      @csrf
                     <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#tambah">Ubah</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ubah">Ubah</button>
                         <div class="modal fade" id="ubah" tabindex="-1" aria-labelledby="btn-ubah" aria-hidden="true">
                           <div class="modal-dialog">
                             <div class="modal-content">
                               <div class="modal-header">
-                                <h5 class="modal-title" id="btn-tambah">Tambah</h5>
+                                <h5 class="modal-title" id="btn-ubah">Ubah Data Barang ID '{{ $br->id_barang }}'</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                               </div>
                               <div class="modal-body">
-                                ...
+                                <div class="mb-3">
+                                  <label for="namabarang" class="form-label">Nama Barang</label>
+                                  <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ $br->nama_barang }}">
+                                  @error('nama_barang')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="mb-3">
+                                  <label for="typebarang" class="form-label">Type Barang</label>
+                                  <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required value="{{ $br->type_barang }}">
+                                  @error('type_barang')
+                                  <div class="invalid-feedback">
+                                    {{ $message }}
+                                  </div>
+                                  @enderror
+                                </div>
+                                <div class="mb-3">
+                                  <label for="kondisibarang" class="form-label">Kondisi Barang</label>
+                                  <select class="form-select" name="kondisi_barang" aria-label="Default select example">
+                                    <option name="baik" value="1" {{ ($br->kondisi_barang === "Baik") ? 'selected' : '' }}>Baik</option>
+                                    <option name="rusak" value="2" {{ ($br->kondisi_barang === "Rusak") ? 'selected' : '' }}>Rusak</option>
+                                  </select>
+                                </div>
+                                <div class="mb-3">
+                                  <label for="statusbarang" class="form-label">Status Barang</label>
+                                  <select class="form-select" name="status_barang" aria-label="Default select example">
+                                    <option name="terpinjam" value="1" {{ ($br->status_barang === "Terpinjam") ? 'selected' : '' }}>Terpinjam</option>
+                                    <option name="tidakterpinjam" value="2" {{ ($br->status_barang === "Tidak Terpinjam") ? 'selected' : '' }}>Tidak Terpinjam</option>
+                                    <option name="dalamperbaikan" value="3" {{ ($br->status_barang === "Dalam Perbaikan") ? 'selected' : '' }}>Dalam Perbaikan</option>
+                                  </select>
+                                </div>
                               </div>
                               <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="ubah">Close</button>
-                                <button type="button" class="btn btn-danger">Save changes</button>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="cancel">Batal</button>
+                                <button type="submit" class="btn btn-danger">Simpan Perubahan</button>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <button type="button" class="btn btn-sm btn-outline-secondary btn-danger text-white">Hapus</button>
-                      </div>
+                      </form>
+
+                      <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapus">Ubah</button>
+                      <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="btn-hapus" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="btn-hapus">Yakin hapus data barang dengan ID '{{ $br->id_barang }}'</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-secondary" data-bs-dismiss="cancel">Batal</button>
+                              <form action="/barang" method="post">
+                                @method('delete')
+                                @csrf
+                                <button type="submit" class="btn btn-danger ">Hapus</button>
+                              </form>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                   </td>
                 </tr>
             @endforeach

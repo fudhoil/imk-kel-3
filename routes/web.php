@@ -46,3 +46,5 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 
 Route::post('/register', [RegisterController::class, 'store']);
 
+Route::resource('/barang', BarangController::class)->middleware('auth');
+
