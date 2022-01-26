@@ -19,7 +19,7 @@ class CreateBarangsTable extends Migration
             $table->string('nama_barang');
             $table->string('type_barang');
             $table->enum('kondisi_barang',['Baik','Rusak']);
-            $table->enum('status_barang',['Tersedia','Tidak tersedia','Dalam perbaikan']);
+            $table->enum('status_barang',['Terpinjam','Tidak Terpinjam','Dalam perbaikan']);
             $table->timestamps();
         });
     }

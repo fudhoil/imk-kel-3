@@ -39,16 +39,16 @@
                     <div class="mb-3">
                       <label for="kondisibarang" class="form-label">Kondisi Barang</label>
                       <select class="form-select" aria-label="Default select example">
-                        <option name="baik" value="1" selected>Baik</option>
-                        <option name="rusak" value="2">Rusak</option>
+                        <option name="kondisi_barang" value="Baik">Baik</option>
+                        <option name="kondisi_barang" value="Rusak">Rusak</option>
                       </select>
                     </div>
                     <div class="mb-3">
                       <label for="statusbarang" class="form-label">Status Barang</label>
                       <select class="form-select" name="status_barang" aria-label="Default select example">
-                        <option name="terpinjam" value="1">Terpinjam</option>
-                        <option name="tidakterpinjam" value="2" selected>Tidak Terpinjam</option>
-                        <option name="dalamperbaikan" value="3">Dalam Perbaikan</option>
+                        <option name="status_barang" value="Terpinjam">Terpinjam</option>
+                        <option name="status_barang" value="Tidak Terpinjam">Tidak Terpinjam</option>
+                        <option name="status_barang" value="Dalam Perbaikan">Dalam Perbaikan</option>
                       </select>
                     </div>
                   </div>
@@ -96,24 +96,21 @@
                   <td>{{ $br->kondisi_barang }}</td>
                   <td>{{ $br->status_barang }}</td>
                   <td>
-                    <form action="/barang" method="post">
-                      @method('update')
-                      @csrf
                     <div class="btn-group me-2">
-                        <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ubah">Ubah</button>
-                        <div class="modal fade" id="ubah" tabindex="-1" aria-labelledby="btn-ubah" aria-hidden="true">
-                          <div class="modal-dialog">
-                            <div class="modal-content">
-                              <div class="modal-header">
-                                <h5 class="modal-title" id="btn-ubah">Ubah Data Barang ID '{{ $br->id_barang }}'</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                              </div>
-                              <div class="modal-body">
-                                <div class="mb-3">
-                                  <label for="namabarang" class="form-label">Nama Barang</label>
-                                  <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ $br->nama_barang }}">
-                                  @error('nama_barang')
-                                  <div class="invalid-feedback">
+                      <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#ubah">Ubah</button>
+                      <div class="modal fade" id="ubah" tabindex="-1" aria-labelledby="btn-ubah" aria-hidden="true">
+                        <div class="modal-dialog">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title" id="btn-ubah">Ubah Data Barang ID '{{ $br->id_barang }}'</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                              <div class="mb-3">
+                                <label for="namabarang" class="form-label">Nama Barang</label>
+                                <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ $br->nama_barang }}">
+                                @error('nama_barang')
+                                <div class="invalid-feedback">
                                     {{ $message }}
                                   </div>
                                   @enderror
@@ -145,14 +142,17 @@
                               </div>
                               <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="cancel">Batal</button>
+                                <form action="/barang" method="post">
+                                  @method('update')
+                                  @csrf
                                 <button type="submit" class="btn btn-danger">Simpan Perubahan</button>
+                              </form>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </form>
 
-                      <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapus">Ubah</button>
+                      <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#hapus">Hapus</button>
                       <div class="modal fade" id="hapus" tabindex="-1" aria-labelledby="btn-hapus" aria-hidden="true">
                         <div class="modal-dialog">
                           <div class="modal-content">
@@ -165,7 +165,7 @@
                               <form action="/barang" method="post">
                                 @method('delete')
                                 @csrf
-                                <button type="submit" class="btn btn-danger ">Hapus</button>
+                                <button class="btn btn-danger ">Hapus</button>
                               </form>
                               </div>
                             </div>
