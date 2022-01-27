@@ -1,28 +1,18 @@
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand bg-warning col-md-3 col-lg-2 me-0 px-3 text-black" href="/">GATRA COLLABORATIVE</a>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+<nav class="navbar navbar-expand-lg navbar-dark sticky-top bg-dark p-0 shadow">
+  <div class="container-fluid justify-content-between">
+    <div class="d-flex">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 text-warning bg-dark" href="/" style="font-family: 'Oswald', sans-serif;">GATRA COLLABORATIVE</a>
+    </div>
+    <button class="navbar-toggler bg-warning text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <i data-feather="user"></i>
     </button>
-    @auth
-      <div class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle text-decoration-none text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
-          Selamat datang, {{ auth()->user()->nama }}
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item disabled" href="#">Profil</a></li>
-          <li><a class="dropdown-item" href="/">Home</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li>
-            <form action="/logout" method="post">
-              @csrf
-              <button type="submit" class="dropdown-item">Keluar</button>
-            </form>
-        </ul>
-      </div>
-    @else
-        <div class="nav-item text-nowrap">
-          <a class="nav-link px-3  text-decoration-none text-white" href="/login">Masuk</a>
+      @auth
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-link" href="/logout">Keluar <i data-feather="log-out"></i></a>
         </div>
-    @endauth
+      </div>
+      @endauth
+  </div>
 
-</header>
+</nav>

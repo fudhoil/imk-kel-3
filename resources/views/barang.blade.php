@@ -5,7 +5,7 @@
 
 @section('container')
 
-<div class="container-fluid mt-5">
+<div class="container-fluid mt-1">
     <div class="d-flex justify-content-between flex-row-inverse bd-highlight mb-3">
           <form action="/barang">
             <div class="input-group">
@@ -121,58 +121,6 @@
                     <div class="btn-group me-1">
                       {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Ubah</button> --}}
                   <button type="button" class="btn btn-sm btn-outline-secondary rounded" data-bs-toggle="modal" data-bs-target="#ubah"><i data-feather="edit"></i></button>
-                  <div class="modal fade" id="ubah" tabindex="-1" aria-labelledby="btn-ubah" aria-hidden="true">  
-                    <form action="/barang" method="post">
-                      @csrf
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title" id="btn-ubah">ubah</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">
-                              <div class="mb-3">
-                                <label for="namabarang" class="form-label">Nama Barang</label>
-                                <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ old('nama_barang') }}">
-                                @error('nama_barang')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                              </div>
-                              <div class="mb-3">
-                                <label for="typebarang" class="form-label">Type Barang</label>
-                                <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required {{ old('type_barang') }}>
-                                @error('type_barang')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                              </div>
-                              <div class="mb-3">
-                                <label for="kondisibarang" class="form-label">Kondisi Barang</label>
-                                <select name="kondisi_barang" class="form-control">
-                                  <option name="kondisi_barang" value="Baik">Baik</option>
-                                  <option name="kondisi_barang" value="Rusak">Rusak</option>
-                                </select>
-                              </div>
-                              <div class="mb-3">
-                                <label for="statusbarang" class="form-label">Status Barang</label>
-                                <select class="form-select" name="status_barang">
-                                  <option name="status_barang" value="Terpinjam">Terpinjam</option>
-                                  <option name="status_barang" value="Tidak Terpinjam">Tidak Terpinjam</option>
-                                  <option name="status_barang" value="Dalam Perbaikan">Dalam Perbaikan</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="submit" class="btn btn-primary">Ubah</button>
-                            </div>
-                        </div>
-                        </div>
-                      </form>
-                    </div>
-                      
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
