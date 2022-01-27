@@ -48,3 +48,9 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::resource('/barang', BarangController::class)->middleware('auth');
 
+Route::get('/editbarang', function(){
+    return view('editbarang', [
+        'title' => 'Edit Barang'
+    ]);
+})->middleware('auth');
+
