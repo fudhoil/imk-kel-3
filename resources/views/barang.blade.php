@@ -6,11 +6,11 @@
 @section('container')
 
 <div class="container-fluid mt-5">
-    <div class="d-flex justify-content-between flex-row-inverse bd-highlight">
+    <div class="d-flex justify-content-between flex-row-inverse bd-highlight mb-3">
           <form action="/barang">
             <div class="input-group">
               <input class="form-control" type="text" placeholder="Cari.." name="search" value="{{ request('search') }}">
-              <button class="btn btn-outline-success" type="submit"><i data-feather="search"></i></button>
+              <button class="btn bg-warning" type="submit"><i data-feather="search"></i></button>
             </div>
           </form>
       <button type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
@@ -63,10 +63,8 @@
                   </div>
               </div>
               </div>
-              </div>
-            </div>
-          </form>
-        
+            </form>
+          </div> 
     </div>
     @if (session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -97,17 +95,16 @@
         </thead>
         <tbody>
           @foreach ($barang as $index => $br)
-              <form action="/barang" method="post">
-                <tr>
-                  <th scope="row">{{ $index +1 }}</th>
+          <tr>
+            <th scope="row">{{ $index +1 }}</th>
                   <td>{{ $br->id }}</td>
                   <td>{{ $br->nama_barang }}</td>
                   <td>{{ $br->type_barang }}</td>
                   <td class=""> 
                   @if ($br->kondisi_barang=='Baik') 
-                    <span class="badge bg-primary py-1 px-3">{{ $br->kondisi_barang }}</span>    
+                  <span class="badge bg-primary py-1 px-3">{{ $br->kondisi_barang }}</span>    
                   @else
-                    <span class="badge bg-warning py-1 px-3">{{ $br->kondisi_barang }}</span>    
+                  <span class="badge bg-warning py-1 px-3">{{ $br->kondisi_barang }}</span>    
                   @endif
                   </td>
                   <td>
@@ -115,22 +112,76 @@
                     <span class="badge bg-warning py-1 px-3">{{ $br->status_barang }}</span>    
                   @elseif ($br->status_barang=='Tidak Terpinjam')
                     <span class="badge bg-primary py-1 px-3">{{ $br->status_barang }}</span> 
-                  @else
+                    @else
                     <span class="badge bg-danger py-1 px-3">{{ $br->status_barang }}</span> 
-                  @endif  
+                    @endif  
                   </td>
                   @auth
                   <td>
                     <div class="btn-group me-1">
-                      <button type="button" class="btn btn-sm btn-outline-secondary">Ubah</button>
+                      {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Ubah</button> --}}
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded" data-bs-toggle="modal" data-bs-target="#ubah"><i data-feather="edit"></i></button>
+                  <div class="modal fade" id="ubah" tabindex="-1" aria-labelledby="btn-ubah" aria-hidden="true">  
+                    <form action="/barang" method="post">
+                      @csrf
+                      <div class="modal-dialog">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            <h5 class="modal-title" id="btn-ubah">ubah</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                          </div>
+                          <div class="modal-body">
+                              <div class="mb-3">
+                                <label for="namabarang" class="form-label">Nama Barang</label>
+                                <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ old('nama_barang') }}">
+                                @error('nama_barang')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                              </div>
+                              <div class="mb-3">
+                                <label for="typebarang" class="form-label">Type Barang</label>
+                                <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required {{ old('type_barang') }}>
+                                @error('type_barang')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                              </div>
+                              <div class="mb-3">
+                                <label for="kondisibarang" class="form-label">Kondisi Barang</label>
+                                <select name="kondisi_barang" class="form-control">
+                                  <option name="kondisi_barang" value="Baik">Baik</option>
+                                  <option name="kondisi_barang" value="Rusak">Rusak</option>
+                                </select>
+                              </div>
+                              <div class="mb-3">
+                                <label for="statusbarang" class="form-label">Status Barang</label>
+                                <select class="form-select" name="status_barang">
+                                  <option name="status_barang" value="Terpinjam">Terpinjam</option>
+                                  <option name="status_barang" value="Tidak Terpinjam">Tidak Terpinjam</option>
+                                  <option name="status_barang" value="Dalam Perbaikan">Dalam Perbaikan</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="modal-footer">
+                              <button type="submit" class="btn btn-primary">Ubah</button>
+                            </div>
+                        </div>
+                        </div>
+                      </form>
+                    </div>
+                      
+                      <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')">Hapus</button>
-                      </div>
-                    </td>
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')"><i data-feather="trash"></i></button>
+                      </form>
+                    </div>
+                  </td>
                     @endauth
                   </tr>
-                </form>
             @endforeach
         </tbody>
     </table>
