@@ -119,8 +119,7 @@
                   @auth
                   <td>
                     <div class="btn-group me-1">
-                      {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Ubah</button> --}}
-                  <button type="button" class="btn btn-sm btn-outline-secondary rounded border-0" data-bs-toggle="modal" data-bs-target="#ubah"><i data-feather="edit"></i></button>
+                      <a class="btn btn-outline-secondary rounded border-0" href="/editbarang"><i data-feather="edit"></i></a>
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
