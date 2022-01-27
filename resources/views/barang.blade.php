@@ -53,7 +53,7 @@
                       <label for="statusbarang" class="form-label">Status Barang</label>
                       <select class="form-select" name="status_barang">
                         <option name="status_barang" value="Terpinjam">Terpinjam</option>
-                        <option name="status_barang" value="Tidak Terpinjam">Tidak Terpinjam</option>
+                        <option name="status_barang" value="Tidak Terpinjam" selected>Tidak Terpinjam</option>
                         <option name="status_barang" value="Dalam Perbaikan">Dalam Perbaikan</option>
                       </select>
                     </div>
@@ -120,11 +120,11 @@
                   <td>
                     <div class="btn-group me-1">
                       {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Ubah</button> --}}
-                  <button type="button" class="btn btn-sm btn-outline-secondary rounded" data-bs-toggle="modal" data-bs-target="#ubah"><i data-feather="edit"></i></button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary rounded border-0" data-bs-toggle="modal" data-bs-target="#ubah"><i data-feather="edit"></i></button>
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')"><i data-feather="trash"></i></button>
+                        <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')"><i data-feather="trash"></i></button>
                       </form>
                     </div>
                   </td>
