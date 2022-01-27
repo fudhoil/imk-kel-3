@@ -104,7 +104,7 @@
                   @if ($br->kondisi_barang=='Baik') 
                   <span class="badge bg-primary py-1 px-3">{{ $br->kondisi_barang }}</span>    
                   @else
-                  <span class="badge bg-warning py-1 px-3">{{ $br->kondisi_barang }}</span>    
+                  <span class="badge bg-danger py-1 px-3">{{ $br->kondisi_barang }}</span>    
                   @endif
                   </td>
                   <td>
@@ -119,8 +119,7 @@
                   @auth
                   <td>
                     <div class="btn-group me-1">
-                      {{-- <button type="button" class="btn btn-sm btn-outline-secondary">Ubah</button> --}}
-                  <button type="button" class="btn btn-sm btn-outline-secondary rounded border-0" data-bs-toggle="modal" data-bs-target="#ubah"><i data-feather="edit"></i></button>
+                      <a class="btn btn-outline-secondary rounded border-0" href="/editbarang/{editbarang}/edit"><i data-feather="edit"></i></a>
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
