@@ -11,13 +11,15 @@ class Barang extends Model
 
     protected $guarded = ['id'];
 
-    public function scopeFilter($request)
+    public function scopeFilter($query)
     {
-        return $request->where('id', 'like', '%'.$request->id.'%')
+        if(request('search')){
+        $barang->where('id', 'like', '%'.$request->id.'%')
                        ->orWhere('nama_barang', 'like', '%'.$request->nama_barang.'%')
                        ->orWhere('type_barang', 'like', '%'.$request->type_barang.'%')
                        ->orWhere('kondisi_barang', 'like', '%'.$request->kondisi_barang.'%')
                        ->orWhere('status_barang', 'like', '%'.$request->status_barang.'%');
+        }
     }
     
     public function DetailPeminjaman(){

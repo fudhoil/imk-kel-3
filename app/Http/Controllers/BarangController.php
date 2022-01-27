@@ -105,4 +105,5 @@ class BarangController extends Controller
         $id = $barang->id;
         Barang::destroy($barang->id);
         return redirect('/barang')->with('success', 'Data barang dengan ID "'.$id.'" telah berhasil dihapus!');
-asil dihapus!');
+    }
+}
