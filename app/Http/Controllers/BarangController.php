@@ -17,7 +17,8 @@ class BarangController extends Controller
     {
         return view('barang', [
             "title" => "Barang",
-            "barang" => Barang::filter()->paginate(10)
+            "barang" => Barang::orderBy('nama_barang', 'asc')
+                        ->orderBy('type_barang', 'asc')->filter()->paginate(10)
         ]);
     }
 
