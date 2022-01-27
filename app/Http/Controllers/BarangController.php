@@ -15,11 +15,11 @@ class BarangController extends Controller
      */
     public function index()
     {
+
         return view('barang', [
             "title" => "Barang",
-            "barang" => Barang::paginate(10),
-        ]
-        );
+            "barang" => Barang::filter()->paginate(10)
+        ]);
     }
 
     /**
@@ -73,7 +73,12 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        // dd($barang);
+
+        return view('/editbarang', [
+            "title" => "Edit Barang",
+            "barang" => Barang::find($barang->id)
+        ]);     
     }
 
     /**
@@ -85,7 +90,8 @@ class BarangController extends Controller
      */
     public function update(UpdateBarangRequest $request, Barang $barang)
     {
-        //
+        Barang::where('id', $request->id)
+                ->update($request);
     }
 
     /**
@@ -96,7 +102,7 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
+        $id = $barang->id;
         Barang::destroy($barang->id);
-        return redirect('/barang')->with('success', 'Data barang telah berhasil dihapus!');
-    }
-}
+        return redirect('/barang')->with('success', 'Data barang dengan ID "'.$id.'" telah berhasil dihapus!');
+asil dihapus!');
