@@ -104,7 +104,7 @@
                   @if ($br->kondisi_barang=='Baik') 
                   <span class="badge bg-primary py-1 px-3">{{ $br->kondisi_barang }}</span>    
                   @else
-                  <span class="badge bg-warning py-1 px-3">{{ $br->kondisi_barang }}</span>    
+                  <span class="badge bg-danger py-1 px-3">{{ $br->kondisi_barang }}</span>    
                   @endif
                   </td>
                   <td>
