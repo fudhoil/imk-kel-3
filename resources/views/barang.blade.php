@@ -7,9 +7,11 @@
 
 <div class="container-fluid mt-5">
     <div class="d-flex justify-content-between flex-row-inverse bd-highlight">
-          <form class="d-flex">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" type="submit" name="search">Search</button>
+          <form action="/barang">
+            <div class="input-group">
+              <input class="form-control" type="text" placeholder="Cari.." name="search" value="{{ request('search') }}">
+              <button class="btn btn-outline-success" type="submit"><i data-feather="search"></i></button>
+            </div>
           </form>
       <button type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
         <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="btn-tambah" aria-hidden="true">  
@@ -111,7 +113,7 @@
                   <td>
                   @if ($br->status_barang=='Terpinjam') 
                     <span class="badge bg-warning py-1 px-3">{{ $br->status_barang }}</span>    
-                  @elseif ($br->status_barang=='Tidak Tepinjam')
+                  @elseif ($br->status_barang=='Tidak Terpinjam')
                     <span class="badge bg-primary py-1 px-3">{{ $br->status_barang }}</span> 
                   @else
                     <span class="badge bg-danger py-1 px-3">{{ $br->status_barang }}</span> 

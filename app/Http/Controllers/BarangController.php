@@ -15,7 +15,6 @@ class BarangController extends Controller
      */
     public function index()
     {
-
         return view('barang', [
             "title" => "Barang",
             "barang" => Barang::filter()->paginate(10)

@@ -14,11 +14,11 @@ class Barang extends Model
     public function scopeFilter($query)
     {
         if(request('search')){
-        $barang->where('id', 'like', '%'.$request->id.'%')
-                       ->orWhere('nama_barang', 'like', '%'.$request->nama_barang.'%')
-                       ->orWhere('type_barang', 'like', '%'.$request->type_barang.'%')
-                       ->orWhere('kondisi_barang', 'like', '%'.$request->kondisi_barang.'%')
-                       ->orWhere('status_barang', 'like', '%'.$request->status_barang.'%');
+        return $query->where('id', 'like', '%'.request('search').'%')
+                       ->orWhere('nama_barang', 'like', '%'.request('search').'%')
+                       ->orWhere('type_barang', 'like', '%'.request('search').'%')
+                       ->orWhere('kondisi_barang', 'like', '%'.request('search').'%')
+                       ->orWhere('status_barang', 'like', '%'.request('search').'%');
         }
     }
     
