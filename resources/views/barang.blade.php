@@ -119,7 +119,7 @@
                   @auth
                   <td>
                     <div class="btn-group me-1">
-                      <a class="btn btn-outline-secondary rounded border-0" href="/editbarang"><i data-feather="edit"></i></a>
+                      <a class="btn btn-outline-secondary rounded border-0" href="/editbarang/{editbarang}/edit"><i data-feather="edit"></i></a>
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')

@@ -14,7 +14,7 @@ class EditBarangController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -57,7 +57,9 @@ class EditBarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        //
+        return view('editbarang', [
+            'title' => 'Edit Barang'
+        ]);
     }
 
     /**
@@ -68,17 +70,6 @@ class EditBarangController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Barang $barang)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Barang  $barang
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Barang $barang)
     {
         //
     }

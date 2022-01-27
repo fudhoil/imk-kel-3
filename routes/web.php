@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\BarangController;
 use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\EditBarangController;
 use App\Http\Controllers\PeminjamanController;
 
 /*
@@ -47,6 +48,8 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 Route::post('/register', [RegisterController::class, 'store']);
 
 Route::resource('/barang', BarangController::class)->middleware('auth');
+
+Route::resource('/editbarang', EditBarangController::class)->middleware('auth');
 
 Route::get('/editbarang', function(){
     return view('editbarang', [
