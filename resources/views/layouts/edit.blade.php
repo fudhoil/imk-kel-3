@@ -12,6 +12,9 @@
 
       <!-- Custom fonts for this template-->
       <link href="fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
   
       <!-- Custom styles for this template-->
       <link href="css/style.css" rel="stylesheet">
@@ -37,9 +40,7 @@
     <div id="wrapper">
 
       @include('partials.navbar')
-      @include('partials.sidebar')
-      
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <main class="col-md-9justify-content-center">
               @yield('container')
               <footer class="sticky-footer justify-content-center bg-white mt-5">
                   <div class="d-flex justify-content-center my-auto">

@@ -1,1 +1,5 @@
-Edit Barang
+@extends('layouts.edit')
+
+@section('container')
+    ok
+@endsection
