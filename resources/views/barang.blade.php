@@ -95,9 +95,9 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($barang as $index => $br)
+          @foreach ($barang as $br)
           <tr>
-            <th scope="row">{{ $index +1 }}</th>
+            <th scope="row">{{ $loop->iteration }}</th>
                   <td>{{ $br->id }}</td>
                   <td>{{ $br->nama_barang }}</td>
                   <td>{{ $br->type_barang }}</td>
@@ -120,25 +120,21 @@
                   @auth
                   <td>
                     <div class="btn-group me-1">
-                      <button type="button" class="btn btn-outline-secondary rounded border-0"><i data-feather="edit" data-bs-toggle="modal" data-bs-target="#ubah"></i></button>
-                      <div class="modal fade" id="ubah" tabindex="-1" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                              ...
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                              <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
 
+                      <div class="btn-group dropstart">
+                      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i data-feather="edit"></i>
+                      </button>
+                        <ul class="dropdown-menu bg-dark">
+                          <label for="typebarang" class="form-label text-white">Type Barang</label>
+                          <li class="p-1"><input type="text" value="{{ $br->type_barang }}"></li>
+                          <li><hr class="dropdown-divider"></li>
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                          <button type="submit" class="btn btn-primary">Tambahkan</button>
+      
+                        </ul>
+
+                      </div>
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
@@ -146,8 +142,8 @@
                       </form>
                     </div>
                   </td>
-                    @endauth
-                  </tr>
+                  @endauth
+            </tr>
             @endforeach
         </tbody>
     </table>
