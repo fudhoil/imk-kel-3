@@ -29,7 +29,7 @@ class BarangController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -41,12 +41,16 @@ class BarangController extends Controller
     public function store(StoreBarangRequest $request)
     {
         // dd($request);
-        $vaidatedData = $request->validate([
+
+        $validatedData = $request->validate([
             'nama_barang' => 'required|max:255',
             'type_barang' => 'required|max:255',
+            'kondisi_barang' => 'required|max:255',
+            'status_barang' => 'required|max:255',
         ]);
 
-        Barang::create($vaidatedData);
+        Barang::create($validatedData);
+
         return redirect('/barang')->with('success', 'Barang baru berhasil ditambahkan!');
     }
 
@@ -92,7 +96,7 @@ class BarangController extends Controller
      */
     public function destroy(Barang $barang)
     {
-        Barang::destroy($barang->id_barang);
+        Barang::destroy($barang->id);
         return redirect('/barang')->with('success', 'Data barang telah berhasil dihapus!');
     }
 }
