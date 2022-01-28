@@ -120,7 +120,7 @@
                   @auth
                   <td>
                     <div class="btn-group me-1">
-                      <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
+                      <button type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
                         <i data-feather="edit"></i>
                       </button>
                       <form action="{{ url('barang/update', $br->id ) }}" method="post">
