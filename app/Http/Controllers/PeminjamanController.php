@@ -85,7 +85,9 @@ class PeminjamanController extends Controller
      */
     public function edit(Peminjaman $peminjaman)
     {
-        //
+        dd($peminjaman);
+        
+        return back()->with('success',' Data dengan ID '.$id.' telah diperbaharui!');
     }
 
     /**
@@ -97,7 +99,10 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, Peminjaman $peminjaman)
     {
-        //
+        $id = $request->id;
+
+        $barang = Barang::where('id', $request->id)->update($request->except(['_token']));
+        return back()->with('success',' Data dengan ID '.$id.' telah diperbaharui!');
     }
 
     /**
