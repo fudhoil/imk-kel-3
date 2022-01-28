@@ -18,7 +18,7 @@ class PeminjamanController extends Controller
     {
         return view('peminjaman', [
             "title" => "Peminjaman",
-            "peminjaman" => Peminjaman::all()
+            "peminjaman" => Peminjaman::paginate(10)
         ]);
     }
 

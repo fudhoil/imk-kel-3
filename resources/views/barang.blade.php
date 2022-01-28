@@ -119,6 +119,14 @@
                   </td>
                   @auth
                   <td>
+                    @if ($br->status_barang=='Terpinjam')
+                    <div class="btn-group me-1">
+                      <button type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}" disabled>
+                        <i data-feather="edit"></i>
+                      </button>
+                      <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')" disabled><i data-feather="trash"></i></button>
+                    </div>
+                    @else
                     <div class="btn-group me-1">
                       <button type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
                         <i data-feather="edit"></i>
@@ -167,6 +175,7 @@
                         <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')"><i data-feather="trash"></i></button>
                       </form>
                     </div>
+                    @endif
                   </td>
                   @endauth
             </tr>
