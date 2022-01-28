@@ -14,11 +14,11 @@ class Peminjaman extends Model
     protected $guarded = ['id'];
 
     public function DetailPeminjaman(){
-        return $this->hasOne(DetailPeminjaman::class);
+        return $this->belongsTo(DetailPeminjaman::class);
     }
 
     public function Barang(){
-        return $this->hasOne(Barang::class);
+        return $this->hasOne(Barang::class, 'id_barang', 'id');
     }
 
 }

@@ -13,9 +13,9 @@ class DetailPeminjaman extends Model
     protected $guarded = ['foreignId'];
 
     public function Peminjaman(){
-            return $this->hasOne(Peminjaman::class);
+            return $this->hasOne(Peminjaman::class, 'id_peminjaman', 'id');
     }
     public function Barang(){
-        return $this->hasOne(Barang::class);
+        return $this->hasOne(Barang::class, 'id_barang', 'id');
     }
 }
