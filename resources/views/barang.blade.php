@@ -95,9 +95,9 @@
           </tr>
         </thead>
         <tbody>
-          @foreach ($barang as $br)
+          @foreach ($barang as $key => $br)
           <tr>
-            <th scope="row">{{ $loop->iteration }}</th>
+            <th scope="row">{{ $barang->firstItem() + $key }}</th>
                   <td>{{ $br->id }}</td>
                   <td>{{ $br->nama_barang }}</td>
                   <td>{{ $br->type_barang }}</td>
@@ -122,18 +122,34 @@
                     <div class="btn-group me-1">
 
                       <div class="btn-group dropstart">
-                      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i data-feather="edit"></i>
-                      </button>
-                        <ul class="dropdown-menu bg-dark">
-                          <label for="typebarang" class="form-label text-white">Type Barang</label>
+                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                          <i data-feather="edit"></i>
+                        </button>
+                        <ul class="dropdown-menu bg-dark p-2 justify-content-end">
+                          <li class="text-center"><label for="typebarang" class="form-label text-warning p-1">EDIT ID {{ $br->id }}</label></li>
+                          <li><label for="typebarang" class="form-label text-white p-1">Nama Barang</label></li>
+                          <li class="p-1"><input type="text" value="{{ $br->nama_barang }}"></li>
+                          <li><label for="typebarang" class="form-label text-white p-1">Type Barang</label></li>
                           <li class="p-1"><input type="text" value="{{ $br->type_barang }}"></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                          <button type="submit" class="btn btn-primary">Tambahkan</button>
-      
-                        </ul>
-
+                          <li><hr class="dropdown-divider text-white"></li>
+                          <li class="d-flex p-2">
+                            <form action="{{ url('barang/update', $br->id ) }}" method="post">
+                            @csrf
+                            <button type="submit" class="btn btn-primary"><i data-feather="save"></i></button>
+                            @error('nama_barang')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                             @enderror
+                            </form>
+                            <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Cancel</button>
+                            @error('type_barang')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                          </li>
+                          </ul>
                       </div>
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf

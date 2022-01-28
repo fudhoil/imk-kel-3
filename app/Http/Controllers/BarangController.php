@@ -73,12 +73,12 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        // dd($barang);
+        $barang = PoBarangst::findOrFail($id);
 
-        return view('/editbarang', [
-            "title" => "Edit Barang",
-            "barang" => Barang::find($barang->id)
-        ]);     
+        return view('barang', [
+            "title" => "Barang",
+            "barang" => Barang::filter()->orderBy('nama_barang', 'asc')->orderBy('type_barang', 'asc')->paginate(10)
+        ]);
     }
 
     /**
@@ -90,8 +90,9 @@ class BarangController extends Controller
      */
     public function update(UpdateBarangRequest $request, Barang $barang)
     {
-        Barang::where('id', $request->id)
-                ->update($request);
+        $barang = Barang::where('id', $request->id)->update($request->all()); 
+         
+        return back()->with('success',' Data dengan ID '.$barang->id.' telah diperbaharui!');
     }
 
     /**
