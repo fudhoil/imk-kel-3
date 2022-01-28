@@ -73,7 +73,7 @@ class BarangController extends Controller
      */
     public function edit(Barang $barang)
     {
-        $barang = PoBarangst::findOrFail($id);
+        $barang = Barang::findOrFail($id);
 
         return view('barang', [
             "title" => "Barang",
