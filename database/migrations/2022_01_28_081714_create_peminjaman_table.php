@@ -15,10 +15,10 @@ class CreatePeminjamanTable extends Migration
     {
         Schema::create('peminjaman', function (Blueprint $table) {
             $table->id()->notnull();
-            $table->string("nama peminjam");
+            $table->string("nama_peminjam");
             $table->date('tgl_peminjaman');
             $table->date('tgl_pengembalian');
-            $table->date('status_peminjaman');
+            $table->string('status_peminjaman');
             $table->timestamps();
         });
     }
