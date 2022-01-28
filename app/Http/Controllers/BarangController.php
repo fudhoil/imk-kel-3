@@ -90,9 +90,12 @@ class BarangController extends Controller
      */
     public function update(UpdateBarangRequest $request, Barang $barang)
     {
-        $barang = Barang::where('id', $request->id)->update($request->all()); 
+        // dd($request);
+        $id = $request->id;
+
+        $barang = Barang::where('id', $request->id)->update($request->except(['_token'])); 
          
-        return back()->with('success',' Data dengan ID '.$barang->id.' telah diperbaharui!');
+        return back()->with('success',' Data dengan ID '.$id.' telah diperbaharui!');
     }
 
     /**

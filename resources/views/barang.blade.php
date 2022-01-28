@@ -35,7 +35,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="typebarang" class="form-label">Type Barang</label>
-                      <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required {{ old('type_barang') }}>
+                      <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required value="{{ old('type_barang') }}"">
                       @error('type_barang')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -120,37 +120,47 @@
                   @auth
                   <td>
                     <div class="btn-group me-1">
-
-                      <div class="btn-group dropstart">
-                        <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                          <i data-feather="edit"></i>
-                        </button>
-                        <ul class="dropdown-menu bg-dark p-2 justify-content-end">
-                          <li class="text-center"><label for="typebarang" class="form-label text-warning p-1">EDIT ID {{ $br->id }}</label></li>
-                          <li><label for="typebarang" class="form-label text-white p-1">Nama Barang</label></li>
-                          <li class="p-1"><input type="text" value="{{ $br->nama_barang }}"></li>
-                          <li><label for="typebarang" class="form-label text-white p-1">Type Barang</label></li>
-                          <li class="p-1"><input type="text" value="{{ $br->type_barang }}"></li>
-                          <li><hr class="dropdown-divider text-white"></li>
-                          <li class="d-flex p-2">
-                            <form action="{{ url('barang/update', $br->id ) }}" method="post">
-                            @csrf
-                            <button type="submit" class="btn btn-primary"><i data-feather="save"></i></button>
-                            @error('nama_barang')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                             @enderror
+                      <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
+                        <i data-feather="edit"></i>
+                      </button>
+                      <form action="{{ url('barang/update', $br->id ) }}" method="post">
+                        @csrf
+                        <div class="modal fade" id="Ubah-{{ $br->id }}" tabindex="-1" aria-labelledby="btn-Ubah" aria-hidden="true">  
+                            <div class="modal-dialog">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="btn-Ubah">Ubah {{ $br->id }}</h5>
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                      <label for="namabarang" class="form-label">Nama Barang</label>
+                                      <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ $br->nama_barang }}">
+                                      @error('nama_barang')
+                                          <div class="invalid-feedback">
+                                              {{ $message }}
+                                          </div>
+                                      @enderror
+                                    </div>
+                                    <div class="mb-3">
+                                      <label for="typebarang" class="form-label">Type Barang</label>
+                                      <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required value="{{ $br->type_barang }}"">
+                                      @error('type_barang')
+                                          <div class="invalid-feedback">
+                                              {{ $message }}
+                                          </div>
+                                      @enderror
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                                    <button type="submit" class="btn btn-primary">Ubahkan</button>
+                                  </div>
+                              </div>
+                              </div>
                             </form>
-                            <button type="button" class="btn btn-secondary mx-2" data-bs-dismiss="modal">Cancel</button>
-                            @error('type_barang')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                            @enderror
-                          </li>
-                          </ul>
-                      </div>
+                          </div>
+
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
