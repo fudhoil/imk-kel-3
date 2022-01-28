@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Peminjaman;
+use App\Models\DetailPeminjaman;
 use Illuminate\Http\Request;
 
 class PeminjamanController extends Controller
@@ -38,7 +39,21 @@ class PeminjamanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // dd($request);
+
+        $validatedData = $request->validate([
+            'nama_peminjam' => 'required|max:255',
+            'tgl_peminjaman' => 'required|max:255',
+            'id_barang' => 'required',
+        ]);
+
+        Peminjaman::create($validatedData);
+        // DetailPeminjaman::create([
+        //     'id_barang' => $request->id_barang,
+        //     'id_peminjaman' => 
+        // ]);
+
+        return redirect('/peminjaman')->with('success', 'Detail Peminjaman baru berhasil ditambahkan!');
     }
 
     /**

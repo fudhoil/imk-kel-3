@@ -33,29 +33,18 @@
                     @enderror
                   </div>
                   <div class="mb-3">
-                    <label for="tglpeminjaman" class="form-label">Tanggal peminjaman</label>
-                    <input type="date" name="tgl_peminjaman" class="form-control " id="tglpeminjaman" required value="{{ now() }}">
-                    @error('type_peminjaman')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                  </div>
-                  <div class="mb-3">
-                    <label for="kondisipeminjaman" class="form-label">Kondisi peminjaman</label>
-                    <select name="kondisi_peminjaman" class="form-control">
-                      <option name="kondisi_peminjaman" value="Baik">Baik</option>
-                      <option name="kondisi_peminjaman" value="Rusak">Rusak</option>
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="statuspeminjaman" class="form-label">Status peminjaman</label>
-                    <select class="form-select" name="status_peminjaman">
-                      <option name="status_peminjaman" value="Terpinjam">Terpinjam</option>
-                      <option name="status_peminjaman" value="Tidak Terpinjam" selected>Tidak Terpinjam</option>
-                      <option name="status_peminjaman" value="Dalam Perbaikan">Dalam Perbaikan</option>
-                    </select>
-                  </div>
+                      <label for="idbarang" class="form-label">ID Barang</label>
+                      <input type="text" name="id_barang" class="form-control " id="id_peminjaman" required value="{{ old('nama_peminjam') }}">
+                    </div>
+                    <div class="mb-3">
+                      <label for="tglpeminjaman" class="form-label">Tanggal peminjaman</label>
+                      <input type="date" name="tgl_peminjaman" class="form-control " id="tglpeminjaman" required value="{{ now() }}">
+                      @error('type_peminjaman')
+                          <div class="invalid-feedback">
+                              {{ $message }}
+                          </div>
+                      @enderror
+                    </div>
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

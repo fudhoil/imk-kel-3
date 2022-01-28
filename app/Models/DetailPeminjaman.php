@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailPeminjaman extends Model
 {
+
+    public $table = "detail_peminjaman";
+
     protected $guarded = ['foreignId'];
 
     public function Peminjaman(){

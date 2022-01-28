@@ -49,6 +49,8 @@ Route::post('/register', [RegisterController::class, 'store']);
 
 Route::resource('/barang', BarangController::class)->middleware('auth');
 
+Route::resource('/peminjaman', PeminjamanController::class)->middleware('auth');
+
 Route::post('/barang/update/{id}', [BarangController::class, 'update'])->middleware('auth');
 
 
