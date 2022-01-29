@@ -13,6 +13,17 @@ class Peminjaman extends Model
 
     protected $guarded = ['id'];
 
+    public function scopeFilter($query)
+    {
+        if(request('search')){
+        return $query->where('id', 'like', '%'.request('search').'%')
+                       ->orWhere('nama_peminjam', 'like', '%'.request('search').'%')
+                       ->orWhere('tgl_peminjaman', 'like', '%'.request('search').'%')
+                       ->orWhere('tgl_pengembalian', 'like', '%'.request('search').'%')
+                       ->orWhere('status_peminjaman', 'like', '%'.request('search').'%');
+        }
+    }
+
     public function DetailPeminjaman(){
         return $this->belongsTo(DetailPeminjaman::class);
     }

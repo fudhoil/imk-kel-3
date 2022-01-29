@@ -18,7 +18,7 @@ class PeminjamanController extends Controller
     {
         return view('peminjaman', [
             "title" => "Peminjaman",
-            "peminjaman" => Peminjaman::paginate(10)
+            "peminjaman" => Peminjaman::filter()->orderBy('nama_peminjam', 'asc')->orderBy('tgl_peminjaman', 'asc')->paginate(10)
         ]);
     }
 
@@ -85,9 +85,9 @@ class PeminjamanController extends Controller
      */
     public function edit(Peminjaman $peminjaman)
     {
-        dd($peminjaman);
-        
-        return back()->with('success',' Data dengan ID '.$id.' telah diperbaharui!');
+        // dd($peminjaman);
+        $peminjaman = Peminjaman::findOrFail($id);
+        return back()->with('success',' Peminjaman dengan ID '.$id.' telah diperbaharui!');
     }
 
     /**
@@ -99,9 +99,21 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, Peminjaman $peminjaman)
     {
+        $id_barang = Peminjaman::select('id_barang')
+                                ->where('id', '=' , $request->id)
+                                ->first();
+        // value = id barang
+        // dd($id_barang);
         $id = $request->id;
+        $date = date('Y-m-d H:i:s');
+        $p = $peminjaman->where('id', $id);
+        $p->update(['tgl_pengembalian' => $date]);
+        $p->update(['status_peminjaman' => 'Kembali']);
 
-        $barang = Barang::where('id', $request->id)->update($request->except(['_token']));
+        // $barang = Barang::find($id_barang);
+        $barang = Barang::findOrFail($id_barang)->first()->fill(['status_barang' => 'Tidak Terpinjam'])->save();
+        // dd($barang);
+        
         return back()->with('success',' Data dengan ID '.$id.' telah diperbaharui!');
     }
 
@@ -113,6 +125,9 @@ class PeminjamanController extends Controller
      */
     public function destroy(Peminjaman $peminjaman)
     {
-        //
+        $id = $peminjaman->id;
+        Peminjaman::destroy($peminjaman->id);
+        return redirect('/peminjaman')->with('success', 'Data Peminjaman dengan ID "'.$id.'" telah berhasil dihapus!');
+
     }
 }

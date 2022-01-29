@@ -6,6 +6,7 @@
 @section('container')
 
 <div class="container-fluid mt-1">
+    <h1>{{ $title }}</h1>
     <div class="d-flex justify-content-between flex-row-inverse bd-highlight mb-3">
           <form action="/barang">
             <div class="input-group">
