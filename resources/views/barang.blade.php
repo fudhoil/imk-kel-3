@@ -14,7 +14,7 @@
               <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cari" class="btn bg-warning" type="submit"><i data-feather="search"></i></button>
             </div>
           </form>
-      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data" type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+      <button type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
         <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="btn-tambah" aria-hidden="true">  
           <form action="/barang" method="post">
             @csrf
@@ -122,14 +122,14 @@
                   <td>
                     @if ($br->status_barang=='Terpinjam')
                     <div class="btn-group me-1">
-                      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}" disabled>
+                      <button title="Ubah" type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}" disabled>
                         <i data-feather="edit"></i>
                       </button>
                       <button data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')" disabled><i data-feather="trash"></i></button>
                     </div>
                     @else
                     <div class="btn-group me-1">
-                      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
+                      <button title="Ubah" type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
                         <i data-feather="edit"></i>
                       </button>
                       <form action="{{ url('barang/update', $br->id ) }}" method="post">

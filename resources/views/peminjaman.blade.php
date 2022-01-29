@@ -13,7 +13,7 @@
             <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cari" class="btn bg-warning" type="submit"><i data-feather="search"></i></button>
           </div>
         </form>
-    <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data" type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+    <button type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
       <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="btn-tambah" aria-hidden="true">  
         <form action="/peminjaman" method="post">
           @csrf
