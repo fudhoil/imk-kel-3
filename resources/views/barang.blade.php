@@ -11,7 +11,7 @@
           <form action="/barang">
             <div class="input-group">
               <input class="form-control" type="text" placeholder="Cari.." name="search" value="{{ request('search') }}">
-              <button class="btn bg-warning" type="submit"><i data-feather="search"></i></button>
+              <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cari" class="btn bg-warning" type="submit"><i data-feather="search"></i></button>
             </div>
           </form>
       <button type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
@@ -22,7 +22,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="btn-tambah">Tambah</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tutup" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <div class="mb-3">
@@ -71,14 +71,14 @@
     @if (session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
     @if (session()->has('loginError'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ session('loginError') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <table class="table table-hover">
@@ -122,14 +122,14 @@
                   <td>
                     @if ($br->status_barang=='Terpinjam')
                     <div class="btn-group me-1">
-                      <button type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}" disabled>
+                      <button title="Ubah" type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}" disabled>
                         <i data-feather="edit"></i>
                       </button>
-                      <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')" disabled><i data-feather="trash"></i></button>
+                      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')" disabled><i data-feather="trash"></i></button>
                     </div>
                     @else
                     <div class="btn-group me-1">
-                      <button type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
+                      <button title="Ubah" type="button" class="btn btn-outline-secondary border-0 rounded" data-bs-toggle="modal" data-barang={{ $br->id }} data-bs-target="#Ubah-{{ $br->id }}">
                         <i data-feather="edit"></i>
                       </button>
                       <form action="{{ url('barang/update', $br->id ) }}" method="post">
@@ -139,7 +139,7 @@
                               <div class="modal-content">
                                 <div class="modal-header">
                                   <h5 class="modal-title" id="btn-Ubah">Ubah Detail ID {{ $br->id }}</h5>
-                                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tutup" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
                                     <div class="mb-3">
@@ -173,7 +173,7 @@
                       <form action="{{ route('barang.destroy', ['barang' => $br->id]) }}" method="post">
                         @csrf
                         @method('delete')
-                        <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')"><i data-feather="trash"></i></button>
+                        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $br->id }}')"><i data-feather="trash"></i></button>
                       </form>
                     </div>
                     @endif
