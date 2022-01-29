@@ -10,10 +10,10 @@
         <form action="/peminjaman">
           <div class="input-group">
             <input class="form-control" type="text" placeholder="Cari.." name="search" value="{{ request('search') }}">
-            <button class="btn bg-warning" type="submit"><i data-feather="search"></i></button>
+            <button data-bs-toggle="tooltip" data-bs-placement="top" title="Cari" class="btn bg-warning" type="submit"><i data-feather="search"></i></button>
           </div>
         </form>
-    <button type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
+    <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tambah Data" type="button" class="btn btn-sm btn-outline-secondary btn-success text-white" data-bs-toggle="modal" data-bs-target="#tambah">Tambah</button>
       <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="btn-tambah" aria-hidden="true">  
         <form action="/peminjaman" method="post">
           @csrf
@@ -21,7 +21,7 @@
             <div class="modal-content">
               <div class="modal-header">
                 <h5 class="modal-title" id="btn-tambah">Tambah</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tutup" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
                   <div class="mb-3">
@@ -61,14 +61,14 @@
     @if (session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tutup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
     @if (session()->has('error'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ session('error') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tutup" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <table class="table table-hover">
@@ -106,19 +106,19 @@
                 <td>
                   <div class="btn-group me-1">
                   @if ($p->status_peminjaman=='Kembali')
-                  <button type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')" disabled><i data-feather="check"></i></button>   
-                  <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')"><i data-feather="trash"></i></button>
+                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')" disabled><i data-feather="check"></i></button>   
+                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')"><i data-feather="trash"></i></button>
 
                   @else
                     <form action="{{ url('peminjaman/update', $p->id ) }}" method="post">
                       @csrf
-                      <button type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')"><i data-feather="check"></i></button>   
+                      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')"><i data-feather="check"></i></button>   
                     </form>
 
                     <form action="{{ route('peminjaman.destroy', ['peminjaman' => $p->id]) }}" method="post">
                       @csrf
                       @method('delete')
-                      <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')" disabled><i data-feather="trash"></i></button>
+                      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')" disabled><i data-feather="trash"></i></button>
                     </form>
                   
                   @endif
