@@ -112,9 +112,6 @@
                     @method('delete')
                   <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')"><i data-feather="trash"></i></button>
                   </form>
-                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')" disabled><i data-feather="check"></i></button>   
-                  <button data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')"><i data-feather="trash"></i></button>
-
                   @else
                     <form action="{{ url('peminjaman/update', $p->id ) }}" method="post">
                       @csrf
