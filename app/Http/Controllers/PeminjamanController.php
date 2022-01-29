@@ -44,7 +44,6 @@ class PeminjamanController extends Controller
         $id = $request->id_barang;
         if (Barang::where('id', '=', $request->get('id_barang'))->exists() and Barang::where('status_barang', 'Tidak Terpinjam')) {
             // user found
-         
 
             $validatedData = $request->validate([
                 'nama_peminjam' => 'required|max:255',

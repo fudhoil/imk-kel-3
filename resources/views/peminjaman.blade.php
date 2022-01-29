@@ -107,20 +107,17 @@
                   <div class="btn-group me-1">
                   @if ($p->status_peminjaman=='Kembali')
                   <button type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')" disabled><i data-feather="check"></i></button>   
+                  <form action="{{ route('peminjaman.destroy', ['peminjaman' => $p->id]) }}" method="post">
+                    @csrf
+                    @method('delete')
                   <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')"><i data-feather="trash"></i></button>
-
+                  </form>
                   @else
                     <form action="{{ url('peminjaman/update', $p->id ) }}" method="post">
                       @csrf
                       <button type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')"><i data-feather="check"></i></button>   
                     </form>
-
-                    <form action="{{ route('peminjaman.destroy', ['peminjaman' => $p->id]) }}" method="post">
-                      @csrf
-                      @method('delete')
-                      <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')" disabled><i data-feather="trash"></i></button>
-                    </form>
-                  
+                      <button type="submit" class="btn btn-outline-danger border-0" onclick="return confirm('Yakin ingin menghapus data dengan ID {{ $p->id }}')" disabled><i data-feather="trash"></i></button> 
                   @endif
                   </div>
                 </td>
