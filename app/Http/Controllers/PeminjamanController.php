@@ -42,7 +42,7 @@ class PeminjamanController extends Controller
     {
         // dd($request);
         $id = $request->id_barang;
-        if (Barang::where('id', '=', $request->get('id_barang'))->exists() and Barang::where('status_barang', 'Tidak Terpinjam') and Peminjaman::where('status_peminjaman', 'Tidak Terpinjam')) {
+        if (Barang::where('id', '=', $request->get('id_barang'))->where('status_barang', '=', 'Tidak Terpinjam')->exists() or Peminjaman::where('id_barang', '=', $request->get('id_barang'))->where('status_peminjaman', 'Tidak Terpinjam')->exists()) {
             // user found
 
             $validatedData = $request->validate([
@@ -62,7 +62,7 @@ class PeminjamanController extends Controller
             return redirect('/peminjaman')->with('success', 'Detail Peminjaman baru berhasil ditambahkan!');
         }
         
-        return redirect('/peminjaman')->with('error', 'Gagal menambahkan, tidak terdapat barang dengan ID'.$id.'!');
+        return redirect('/peminjaman')->with('error', 'Gagal menambahkan, tidak terdapat barang dengan ID '.$id.'! atau Barang masih terpinjam');
     }
 
     /**
