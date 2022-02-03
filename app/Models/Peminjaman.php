@@ -32,4 +32,10 @@ class Peminjaman extends Model
         return $this->hasOne(Barang::class, 'id_barang', 'id');
     }
 
+    public function Barangs(){
+        return $this->hasOne(Barang::class);
+    }
+
+
+
 }

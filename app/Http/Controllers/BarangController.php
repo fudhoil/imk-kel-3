@@ -41,15 +41,17 @@ class BarangController extends Controller
     public function store(StoreBarangRequest $request)
     {
         // dd($request);
-
         $validatedData = $request->validate([
             'nama_barang' => 'required|max:255',
             'type_barang' => 'required|max:255',
-            'kondisi_barang' => 'required|max:255',
-            'status_barang' => 'required|max:255',
         ]);
 
-        Barang::create($validatedData);
+        Barang::create([
+            'nama_barang' => $request->nama_barang,
+            'type_barang' => $request->type_barang,
+            'kondisi_barang' => 'Baik',
+            'status_barang' => 'Tidak Terpinjam'
+        ]);
 
         return redirect('/barang')->with('success', 'Barang baru berhasil ditambahkan!');
     }
@@ -92,6 +94,9 @@ class BarangController extends Controller
     {
         // dd($request);
         $id = $request->id;
+        if($request->kondisi_barang=='Rusak'){
+            $barang = Barang::where('id', $request->id)->update(['status_barang' => 'Dalam Perbaikan']); 
+        }
 
         $barang = Barang::where('id', $request->id)->update($request->except(['_token'])); 
          

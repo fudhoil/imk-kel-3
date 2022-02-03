@@ -75,9 +75,9 @@
       <thead>
         <tr>
           <th scope="col">No</th>
-          <th scope="col">ID Peminjaman</th>
-          <th scope="col">ID Barang</th>
           <th scope="col">Nama Peminjam</th>
+          <th scope="col">ID Peminjaman</th>
+          <th scope="col">Detail Barang</th>
           <th scope="col">Tanggal Peminjaman</th>
           <th scope="col">Tanggal Pengembalian</th>
           <th scope="col">Status Peminjaman</th>
@@ -90,11 +90,25 @@
         @foreach ($peminjaman as $key => $p)
         <tr>
           <th scope="row">{{ $peminjaman->firstItem() + $key }}</th>
-                <td>{{ $p->id }}</td>
-                <td>{{ $p->id_barang }}</td>
-                <td>{{ $p->nama_peminjam }}</td>
-                <td>{{ $p->tgl_peminjaman }}</td>
-                <td>{{ $p->tgl_pengembalian }}</td>
+          <td>{{ $p->nama_peminjam }}</td>
+          <td>{{ $p->id }}</td>
+          <td>{{ $p->id_barang }}
+            {{-- <button type="button" class="btn btn-info py-0 px-1 text-white" title="Detail Barang" data-bs-toggle="modal" data-barang={{ $peminjaman->barang->id }} data-bs-target="#info_barang-{{ $peeminjaman->barang->id }}""><i data-feather="info"></i></button>
+            <div class="modal fade" id="info_barang-{{ $peminjaman->barang->id }}" tabindex="-1" aria-labelledby="btn-info" aria-hidden="true"> 
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    Detail Barang
+                  </div>
+                  <div class="modal-body">
+                    {{ $p->id_barang }}
+                  </div>
+                </div>
+              </div>
+            </div> --}}
+          </td>
+          <td>{{ $p->tgl_peminjaman }}</td>
+          <td>{{ $p->tgl_pengembalian }}</td>
                 <td> 
                   @if ($p->status_peminjaman=='Terpinjam') 
                   <span class="badge bg-warning py-1 px-3">{{ $p->status_peminjaman }}</span>    
@@ -115,7 +129,7 @@
                   @else
                     <form action="{{ url('peminjaman/update', $p->id ) }}" method="post">
                       @csrf
-                      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Ubah" type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')"><i data-feather="check"></i></button>   
+                      <button data-bs-toggle="tooltip" data-bs-placement="top" title="Perbaharui Status" type="submit" class="btn btn-outline-primary border-0" onclick="return confirm('Yakin ingin mengubah status peminjaman pada ID {{ $p->id }} menjadi KEMBALI')"><i data-feather="check"></i></button>   
                     </form>
 
                     <form action="{{ route('peminjaman.destroy', ['peminjaman' => $p->id]) }}" method="post">

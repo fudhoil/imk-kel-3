@@ -27,7 +27,7 @@
                 <div class="modal-body">
                     <div class="mb-3">
                       <label for="namabarang" class="form-label">Nama Barang</label>
-                      <input type="text" name="nama_barang" class="form-control @error('nama_barang') is-invalid @enderror" id="namabarang" autofocus required value="{{ old('nama_barang') }}">
+                      <input type="text" name="nama_barang" class="form-control" @error('nama_barang') is-invalid @enderror id="namabarang" autofocus required value="{{ old('nama_barang') }}">
                       @error('nama_barang')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -36,7 +36,7 @@
                     </div>
                     <div class="mb-3">
                       <label for="typebarang" class="form-label">Type Barang</label>
-                      <input type="text" name="type_barang" class="form-control @error('type_barang') is-invalid @enderror" id="typebarang" required value="{{ old('type_barang') }}"">
+                      <input type="text" name="type_barang" class="form-control" @error('type_barang') is-invalid @enderror id="typebarang" required value="{{ old('type_barang') }}"">
                       @error('type_barang')
                           <div class="invalid-feedback">
                               {{ $message }}
@@ -45,18 +45,11 @@
                     </div>
                     <div class="mb-3">
                       <label for="kondisibarang" class="form-label">Kondisi Barang</label>
-                      <select name="kondisi_barang" class="form-control">
-                        <option name="kondisi_barang" value="Baik">Baik</option>
-                        <option name="kondisi_barang" value="Rusak">Rusak</option>
-                      </select>
+                      <input type="text" class="form-control" name="kondisi_barang" value="Baik" disabled>
                     </div>
                     <div class="mb-3">
                       <label for="statusbarang" class="form-label">Status Barang</label>
-                      <select class="form-select" name="status_barang">
-                        <option name="status_barang" value="Terpinjam">Terpinjam</option>
-                        <option name="status_barang" value="Tidak Terpinjam" selected>Tidak Terpinjam</option>
-                        <option name="status_barang" value="Dalam Perbaikan">Dalam Perbaikan</option>
-                      </select>
+                      <input type="text" class="form-control" name="status_barang" value="Tidak Terpinjam" disabled>
                     </div>
                   </div>
                   <div class="modal-footer">
@@ -71,22 +64,22 @@
     @if (session()->has('success'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('success') }}
-        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
     @if (session()->has('loginError'))
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{ session('loginError') }}
-        <button data-bs-toggle="tooltip" data-bs-placement="top" title="Tooltip on top" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
     <table class="table table-hover">
         <thead>
           <tr>
             <th scope="col">No</th>
-            <th scope="col">ID Barang</th>
             <th scope="col">Nama Barang</th>
+            <th scope="col">ID Barang</th>
             <th scope="col">Type Barang</th>
             <th scope="col">Kondisi Barang</th>
             <th scope="col">Status Barang</th>
@@ -99,9 +92,9 @@
           @foreach ($barang as $key => $br)
           <tr>
             <th scope="row">{{ $barang->firstItem() + $key }}</th>
-                  <td>{{ $br->id }}</td>
-                  <td>{{ $br->nama_barang }}</td>
-                  <td>{{ $br->type_barang }}</td>
+            <td>{{ $br->nama_barang }}</td>
+            <td>{{ $br->id }}</td>
+            <td>{{ $br->type_barang }}</td>
                   <td class=""> 
                   @if ($br->kondisi_barang=='Baik') 
                   <span class="badge bg-primary py-1 px-3">{{ $br->kondisi_barang }}</span>    
@@ -111,7 +104,20 @@
                   </td>
                   <td>
                   @if ($br->status_barang=='Terpinjam') 
-                    <span class="badge bg-warning py-1 px-3">{{ $br->status_barang }}</span>    
+                    <span class="badge bg-warning py-1 px-3">{{ $br->status_barang }}</span>
+                    {{-- <button type="button" class="btn btn-info py-0 px-1 text-white" title="Detail Barang" data-bs-toggle="modal" data-barang={{ $barang->peminjaman->id}} data-bs-target="#info_barang-{{ $barang->peminjaman->id }}""><i data-feather="info"></i></button>
+                    <div class="modal fade" id="info_barang-{{ $br->id_barang }}" tabindex="-1" aria-labelledby="btn-info" aria-hidden="true"> 
+                      <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                          <div class="modal-header">
+                            Detail Barang
+                          </div>
+                          <div class="modal-body">
+                            {{ $barang->peminjaman->id }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>     --}}
                   @elseif ($br->status_barang=='Tidak Terpinjam')
                     <span class="badge bg-primary py-1 px-3">{{ $br->status_barang }}</span> 
                     @else
@@ -160,6 +166,13 @@
                                           </div>
                                       @enderror
                                     </div>
+                                    <div class="mb-3">
+                                      <label for="kondisibarang" class="form-label">Kondisi Barang</label>
+                                      <select name="kondisi_barang" class="form-control">
+                                        <option name="kondisi_barang" value="Baik" @if($br->kondisi_barang=='Baik') selected @endif>Baik</option>
+                                        <option name="kondisi_barang" value="Rusak" @if($br->kondisi_barang=='Rusak') selected @endif>Rusak</option>
+                                      </select>
+                                    </div>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
@@ -177,8 +190,8 @@
                       </form>
                     </div>
                     @endif
-                  </td>
-                  @endauth
+                </td>
+                @endauth
             </tr>
             @endforeach
         </tbody>

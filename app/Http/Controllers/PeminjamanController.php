@@ -18,7 +18,8 @@ class PeminjamanController extends Controller
     {
         return view('peminjaman', [
             "title" => "Peminjaman",
-            "peminjaman" => Peminjaman::filter()->orderBy('nama_peminjam', 'asc')->orderBy('tgl_peminjaman', 'asc')->paginate(10)
+            "peminjaman" => Peminjaman::filter()->orderBy('nama_peminjam', 'asc')->orderBy('tgl_peminjaman', 'asc')->paginate(10),
+            "barang" => Barang::all()
         ]);
     }
 
@@ -62,7 +63,7 @@ class PeminjamanController extends Controller
             return redirect('/peminjaman')->with('success', 'Detail Peminjaman baru berhasil ditambahkan!');
         }
         
-        return redirect('/peminjaman')->with('error', 'Gagal menambahkan, tidak terdapat barang dengan ID '.$id.'! atau Barang masih terpinjam');
+        return redirect('/peminjaman')->with('error', 'Gagal menambahkan peminjaman barang dengan ID '.$id.'!');
     }
 
     /**
@@ -113,7 +114,7 @@ class PeminjamanController extends Controller
         $barang = Barang::findOrFail($id_barang)->first()->fill(['status_barang' => 'Tidak Terpinjam'])->save();
         // dd($barang);
         
-        return back()->with('success',' Data dengan ID '.$id.' telah diperbaharui!');
+        return back()->with('success',' Data peminjaman dengan ID '.$id.' telah diperbaharui!');
     }
 
     /**
