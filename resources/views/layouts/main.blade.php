@@ -34,6 +34,7 @@
           }
         }
       </style>
+      @livewireStyles
   </head>
   <body id="page-top">
 
@@ -76,6 +77,6 @@
         return new bootstrap.Tooltip(tooltipTriggerEl)
       })
     </script>
-
+    @livewireScripts
 </body>
 </html>
