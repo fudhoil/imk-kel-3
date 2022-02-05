@@ -168,7 +168,7 @@
                                     </div>
                                     <div class="mb-3">
                                       <label for="kondisibarang" class="form-label">Kondisi Barang</label>
-                                      <select name="kondisi_barang" class="form-control">
+                                      <select name="kondisi_barang" class="form-select">
                                         <option name="kondisi_barang" value="Baik" @if($br->kondisi_barang=='Baik') selected @endif>Baik</option>
                                         <option name="kondisi_barang" value="Rusak" @if($br->kondisi_barang=='Rusak') selected @endif>Rusak</option>
                                       </select>

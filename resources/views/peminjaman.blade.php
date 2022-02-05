@@ -93,7 +93,7 @@
           <td>{{ $p->nama_peminjam }}</td>
           <td>{{ $p->id }}</td>
           <td>{{ $p->id_barang }}
-            {{-- <button type="button" class="btn btn-info py-0 px-1 text-white" title="Detail Barang" data-bs-toggle="modal" data-barang={{ $peminjaman->barang->id }} data-bs-target="#info_barang-{{ $peeminjaman->barang->id }}""><i data-feather="info"></i></button>
+            {{-- <button type="button" class="btn btn-info py-0 px-1 text-white" title="Detail Barang" data-bs-toggle="modal" data-barang={{ $peminjaman->barang->id }} data-bs-target="#info_barang-{{ $peminjaman->barang->id }}""><i data-feather="info"></i></button>
             <div class="modal fade" id="info_barang-{{ $peminjaman->barang->id }}" tabindex="-1" aria-labelledby="btn-info" aria-hidden="true"> 
               <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">

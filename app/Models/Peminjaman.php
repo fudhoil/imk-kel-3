@@ -28,9 +28,9 @@ class Peminjaman extends Model
         return $this->belongsTo(DetailPeminjaman::class);
     }
 
-    public function Barang(){
-        return $this->hasOne(Barang::class, 'id_barang', 'id');
-    }
+    // public function Barang(){
+    //     return $this->hasOne(Barang::class, 'id_barang', 'id');
+    // }
 
     public function Barangs(){
         return $this->hasOne(Barang::class);
